@@ -40,8 +40,11 @@ procPackage P{packageID, brokenDeps} = do
       let pack' = pack{depends=foldr (uncurry replace) (depends pack) table}
       writeFile infoPath $ showInstalledPackageInfo pack'
 
+init' :: [a] -> [a]
+init' = reverse . drop 1 . reverse
+
 getPackageName :: String -> String
-getPackageName pid = intercalate "-" $ take 2 $ splitOn "-" pid
+getPackageName pid = intercalate "-" $ init' $ splitOn "-" pid
 
 getPackageID :: String -> IO (Maybe String)
 getPackageID pName = do
