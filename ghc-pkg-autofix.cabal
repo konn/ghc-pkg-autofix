@@ -7,14 +7,16 @@ Name:                ghc-pkg-autofix
 -- The package version. See the Haskell package versioning policy
 -- (http://www.haskell.org/haskellwiki/Package_versioning_policy) for
 -- standards guiding when and how versions should be incremented.
-Version:             0.1.4
+Version:             0.2.0
 
 -- A short (one-line) description of the package.
-Synopsis:            Simple utility to fix BROKEN package dependencies.
+Synopsis:            Simple utility to fix BROKEN package dependencies for cabal-install.
 
 -- A longer description of the package.
 Description: The cabal-install sometimes reinstall existing library and break some package dependencies. This utility fixes such situations by replacing old package id in "broken" package with new id.
              Please Use at your own risk.
+
+             NOTE for v.0.2: Now ghc-pkg-autofix supports cabal-dev!
 
 -- The license under which the package is released.
 License:             BSD3
@@ -51,7 +53,7 @@ Executable ghc-pkg-autofix
   -- Packages needed in order to build this package.
   Build-depends: base >= 4 && < 5, parsec >= 3 && < 4, split >= 0.1 && < 0.2,
                  filepath  >= 1 && < 2, process >= 1.0 && < 1.1,
-                 Cabal >= 1.8 && <2
+                 Cabal >= 1.8 && <2, cmdargs == 0.9.*
   
   -- Modules not exported by this package.
   Other-modules: PkgCheckParser
