@@ -43,7 +43,7 @@ Build-type:          Simple
 -- Extra-source-files:  
 
 -- Constraint on the version of Cabal needed to build this package.
-Cabal-version:       >=1.2
+Cabal-version:       >=1.6
 
 
 Executable ghc-pkg-autofix
@@ -61,3 +61,7 @@ Executable ghc-pkg-autofix
   -- Extra tools (e.g. alex, hsc2hs, ...) needed to build the source.
   -- Build-tools:         
   
+source-repository head
+ type:     git
+ location: git://github.com/konn/ghc-pkg-autofix.git
+
