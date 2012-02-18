@@ -91,8 +91,10 @@ getPackageInfoPath mfp pid = do
 
 getConfDir :: Maybe FilePath -> IO FilePath
 getConfDir mfp = do
-  src <- case mfp of
-           Nothing -> readProcess "ghc-pkg" ["list", "--user"] ""
-           Just fp -> readProcess "cabal-dev" ["-s", fp, "ghc-pkg", "list", "--user"] ""
-  let ans = init $ head $ drop 1 $ filter ("/" `isPrefixOf`) $ lines src
-  return ans
+  case mfp of
+    Nothing -> do
+      src <- readProcess "ghc-pkg" ["list", "--user"] ""
+      return $ init $ head $ filter ("/" `isPrefixOf`) $ lines src
+    Just fp -> do
+      src <- readProcess "cabal-dev" ["-s", fp, "ghc-pkg", "list", "--user"] ""
+      return $ init $ head $ drop 1 $ filter ("/" `isPrefixOf`) $ lines src
